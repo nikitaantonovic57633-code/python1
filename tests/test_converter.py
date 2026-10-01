@@ -11,10 +11,14 @@ def test_length():
     assert convert(100, "cm", "m") == 1.0
     assert convert(1000, "m", "km") == 1.0
     assert convert(1, "km", "mm") == 1000000.0
+
+
 # Масса: g, kg.
 def test_mass():
     assert convert(1000, "g", "kg") == 1.0
     assert convert(1.5, "kg", "g") == 1500.0
+
+
 # Температура: c, f, k.
 def test_temperature():
     assert convert(0, "c", "f") == pytest.approx(32.0)
@@ -53,3 +57,9 @@ def test_float():
 def test_unknown():
     with pytest.raises(ConverterError):
         convert(1, "xyz", "m")
+
+
+# Неверное числовое значение.
+def test_num():
+    with pytest.raises(ConverterError):
+        convert("@", "km", "m")

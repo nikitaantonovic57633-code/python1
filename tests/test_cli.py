@@ -19,10 +19,16 @@ def run_cli(*args):
     )
 
 
-def test_cli_ok():
+def test_cli_calc():
     result = run_cli("calc", "1 + 2 * 3")
     assert result.returncode == 0
     assert result.stdout.strip() == "7"
+
+
+def test_cli_conv():
+    result = run_cli("convert", "1", "--from", "m", "--to", "cm")
+    assert result.returncode == 0
+    assert result.stdout.strip() == "100.0"
 
 
 def test_cli_help():
